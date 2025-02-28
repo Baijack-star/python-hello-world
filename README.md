@@ -1,26 +1,21 @@
-# Python Hello World
+# Python Web 应用示例
 
-这是一个简单的Python Hello World项目，用于测试IDE和GitHub仓库的对接。
+这是一个使用Flask框架创建的简单Web应用示例。
 
-## 项目结构
+## 功能介绍
 
-```
-python-hello-world/
-├── hello_world.py    # 主程序文件
-├── .gitignore        # Git忽略文件
-└── README.md         # 项目说明文档
-```
+- 主页展示
+- 关于页面
+- 响应式设计
 
-## 如何运行
+## 安装与运行
 
-1. 确保您的电脑已安装Python 3.x
-2. 运行以下命令：
-```bash
-python hello_world.py
-```
+### 前提条件
 
-## 预期输出
+- Python 3.7+
+- pip
 
-```
-Hello, World!
+### 安装步骤
+
+1. 克隆此仓库
 ```

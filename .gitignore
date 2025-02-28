@@ -2,7 +2,9 @@
 __pycache__/
 *.py[cod]
 *$py.class
+*.so
 .Python
+env/
 build/
 develop-eggs/
 dist/
@@ -14,13 +16,24 @@ lib64/
 parts/
 sdist/
 var/
-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
 
-# IDE
+# 虚拟环境
+venv/
+ENV/
+env/
+.env/
+.venv/
+
+# IDE和编辑器
 .idea/
 .vscode/
 *.swp
 *.swo
+*~
+
+# 操作系统
+.DS_Store
+Thumbs.db
