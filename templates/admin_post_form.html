@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>{{ 'Edit' if post else 'New' }} Post</h1>
+            <nav>
+                <a href="/">首页</a>
+                <a href="/blog">博客</a>
+                <a href="/about">关于</a>
+                <a href="/admin">后台管理</a>
+                <a href="/admin/logout" class="logout-link">退出登录</a>
+            </nav>
+        </header>
+        <main>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="flash-messages">
+                        {% for category, message in messages %}
+                            <div class="flash-message {{ category }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+            
+            <div class="post-form">
+                <h2>{{ '编辑文章' if post else '新建文章' }}</h2>
+                <form method="post" action="{{ url_for('admin_edit_post', post_id=post.id) if post else url_for('admin_new_post') }}" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="title">标题</label>
+                        <input type="text" id="title" name="title" required value="{{ post.title if post else '' }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="content">内容</label>
+                        <textarea id="content" name="content" rows="10" required>{{ post.content if post else '' }}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="image">上传图片</label>
+                        <input type="file" id="image" name="image" accept="image/*">
+                        {% if post and post.image_path %}
+                        <p>当前图片: {{ post.image_path }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="form-buttons">
+                        <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary">取消</a>
+                        <button type="submit" class="btn">保存</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+        <footer>
+            <p>&copy; 2023 Python Web App</p>
+        </footer>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

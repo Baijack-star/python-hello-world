@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <header>
-            <h1>关于我们</h1>
+            <h1>博客文章</h1>
             <nav>
                 <a href="/">首页</a>
                 <a href="/blog">博客</a>
@@ -18,10 +18,21 @@
             </nav>
         </header>
         <main>
-            <h2>关于此应用</h2>
-            <p>这是一个演示用的Web应用，展示了如何使用Python和Flask创建一个简单的网站。</p>
-            <p>应用可以从GitHub仓库同步到Codespace进行开发和运行。</p>
-            <p>最近添加了博客功能，支持文章的增删改查操作。</p>
+            <article class="post-detail">
+                <h2>{{ post.title }}</h2>
+                <p class="post-date">发布于: {{ post.date }}</p>
+                
+                {% if post.image_path %}
+                <div class="post-image">
+                    <img src="{{ url_for('static', filename=post.image_path) }}" alt="{{ post.title }}">
+                </div>
+                {% endif %}
+                
+                <div class="post-content">
+                    {{ post.content | replace('\n', '<br>') | safe }}
+                </div>
+                <a href="{{ url_for('blog') }}" class="back-link">&laquo; 返回博客列表</a>
+            </article>
         </main>
         <footer>
             <p>&copy; 2023 Python Web App</p>
